@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+/* Colores corporativos */
+:root {
+	--brand-pink: #ff7faf;
+	--brand-orange: #fea700;
+	--brand-blue: #37c6fe;
+	--brand-green: #a3c316;
+
+	/* Variantes más oscuras */
+	--brand-pink-dark: #d86795;
+	--brand-orange-dark: #d88e00;
+	--brand-blue-dark: #2fa8d8;
+	--brand-green-dark: #8ba613;
+}

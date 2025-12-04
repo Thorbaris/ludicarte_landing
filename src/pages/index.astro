@@ -1,25 +1,20 @@
 ---
-import '../styles/global.css';
-// Component Imports
-import Button from '../components/Button.astro';
+import Main from '../layouts/main.astro';
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+import Hero from '@/src/pages/index/Hero.vue';
+import Programs from '@/src/pages/index/Programs.vue';
+import Team from '@/src/pages/index/Team.vue';
+// import TeamMember from '@/src/pages/index/TeamMember.vue';
+import Features from '@/src/pages/index/Features.vue';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+<Main title="Home">
+	<Hero />
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
-</html>
+	<Programs />
+
+	<Team />
+	<!-- <TeamMember name="María García" role="Directora" initials="MG" /> -->
+
+	<Features />
+</Main>

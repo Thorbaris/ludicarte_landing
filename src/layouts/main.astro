@@ -1,16 +1,28 @@
 ---
 import '../styles/global.css';
-const { content } = Astro.props;
+import Background from '@/components/ui/Background.vue';
+import Navbar from '@/components/ui/Navbar.vue';
+import Footer from '@/components/ui/Footer.vue';
+
+const { title } = Astro.props ?? {};
 ---
 
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{content.title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title ? `${title} — Ludicarte` : 'Astro + TailwindCSS'}</title>
+  </head>
+
+  <body>
+	<Navbar />
+    <slot />
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+      <Background />
+    </div>
+	<Footer />
+  </body>
 </html>
