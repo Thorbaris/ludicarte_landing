@@ -6,23 +6,26 @@
         <div 
           v-for="program in programs"
           :key="program.id"
-          class="rounded-xl p-6 text-white hover:shadow-lg transition cursor-pointer"
-          :style="{ backgroundColor: program.color }"
+          class="p-8 border-4 border-(--brand-green-dark) hover:border-(--brand-blue) bg-card hover:shadow-2xl transition-all transform hover:scale-105 hover:-rotate-1 rounded-3xl"
+          :style="{ backgroundColor: 'var(--soft-1)', borderColor: program.color }"
         >
-          <div class="text-3xl mb-4">{{ program.emoji }}</div>
-          <h3 class="text-xl font-bold mb-2">{{ program.name }}</h3>
-          <p class="text-sm opacity-90">{{ program.description }}</p>
+          <div class="inline-flex p-4 rounded-2xl mb-4">
+            <div class="text-3xl mb-4">{{ program.emoji }}</div>
+          </div>
+          <h3 class="font-bold text-2xl mb-3 text-card-foreground">{{ program.name }}</h3>
+          <p class="text-base text-muted-foreground leading-relaxed font-medium">{{ program.description }}</p>
         </div>
       </div>
+
     </div>
   </section>
 </template>
 
 <script setup>
 const programs = [
-  { id: 1, name: 'Artes', emoji: '🎨', description: 'Pintura, dibujo y manualidades', color: '#22c55e' },
-  { id: 2, name: 'Deportes', emoji: '⚽', description: 'Fútbol, baloncesto y más', color: '#ff6b6b' },
-  { id: 3, name: 'Música', emoji: '🎵', description: 'Clases de música y canto', color: '#fb9260' },
-  { id: 4, name: 'Inglés', emoji: '🌍', description: 'Aprende inglés jugando', color: '#3b82f6' },
+  { id: 1, name: 'Artes', emoji: '🎨', description: 'Pintura, dibujo y manualidades', color: 'var(--brand-pink-dark)' },
+  { id: 2, name: 'Deportes', emoji: '⚽', description: 'Fútbol, baloncesto y más', color: 'var(--brand-orange-dark)' },
+  { id: 3, name: 'Música', emoji: '🎵', description: 'Clases de música y canto', color: 'var(--brand-blue-dark)' },
+  { id: 4, name: 'Inglés', emoji: '🌍', description: 'Aprende inglés jugando', color: 'var(--brand-green-dark)' },
 ];
 </script>

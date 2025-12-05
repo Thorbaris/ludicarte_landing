@@ -1,0 +1,47 @@
+---
+import Main from '../layouts/main.astro';
+---
+
+<Main title="Horarios y edades — Ludicarte">
+  <section class="prose mx-auto py-12 px-4 w-3/5">
+    <h1>Horarios y edades</h1>
+    <p>
+      Aquí tienes una guía general de las actividades, sus edades recomendadas y horarios.
+    </p>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-4 pb-12">
+    <div class="overflow-x-auto">
+      <table class="min-w-full border-collapse border border-slate-200">
+        <thead class="bg-slate-50">
+          <tr>
+            <th class="p-3 text-left">Actividad</th>
+            <th class="p-3 text-left">Edades</th>
+            <th class="p-3 text-left">Días</th>
+            <th class="p-3 text-left">Horario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t">
+            <td class="p-3">Taller de pintura</td>
+            <td class="p-3">4–6 años</td>
+            <td class="p-3">Lunes, Miércoles</td>
+            <td class="p-3">16:00–17:30</td>
+          </tr>
+          <tr class="border-t bg-slate-50">
+            <td class="p-3">Teatro y expresión</td>
+            <td class="p-3">6–9 años</td>
+            <td class="p-3">Martes, Jueves</td>
+            <td class="p-3">16:30–18:00</td>
+          </tr>
+          <tr class="border-t">
+            <td class="p-3">Música y movimiento</td>
+            <td class="p-3">3–5 años</td>
+            <td class="p-3">Sábado</td>
+            <td class="p-3">10:00–11:30</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Main>

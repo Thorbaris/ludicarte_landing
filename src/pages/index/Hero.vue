@@ -11,15 +11,15 @@
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <h2 class="text-5xl md:text-6xl font-bold mb-6">
-            <span class="text-green-500">Educación</span>
-            <span class="block text-blue-500">Divertida</span>
-            <span class="text-orange-500">para Niños</span>
+            <span class="text-(--brand-green-dark)">Educación</span>
+            <span class="block text-(--brand-blue-dark)">Divertida</span>
+            <span class="text-(--brand-orange-dark)">para Niños</span>
           </h2>
           <p class="text-xl text-slate-600 mb-8">
             Un espacio donde tus hijos aprenden, juegan y crecen felices
           </p>
           <div class="flex gap-4">
-            <button class="border-2 border-(--brand-orange) text-(--brand-orange-dark) px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition">
+            <button class="border-2 border-(--brand-orange) text-(--brand-orange) px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition">
               Contactanos
             </button>
           </div>
