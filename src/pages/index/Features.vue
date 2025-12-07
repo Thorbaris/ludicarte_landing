@@ -6,7 +6,7 @@
         <div 
           v-for="program in programs"
           :key="program.id"
-          class="p-8 border-4 border-(--brand-green-dark) hover:border-(--brand-blue) bg-card hover:shadow-2xl transition-all transform hover:scale-105 hover:-rotate-1 rounded-3xl"
+          class="feature-card p-8 border-4 border-(--brand-green-dark) hover:border-(--brand-blue) bg-card hover:shadow-2xl transition-all transform hover:scale-105 hover:-rotate-1 rounded-3xl"
           :style="{ backgroundColor: 'var(--soft-1)', borderColor: program.color }"
         >
           <div class="flex mb-3">
@@ -29,3 +29,36 @@ const programs = [
   { id: 4, name: 'Inglés', emoji: '🌍', description: 'Clases de inglés que combinan juego y aprendizaje para una mejor comprensión.', color: 'var(--brand-green-dark)' },
 ];
 </script>
+
+<style scoped>
+.feature-card {
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+@keyframes cardHover {
+  from {
+    transform: rotate(0deg) scale(1);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    border-color: inherit;
+  }
+  to {
+    transform: rotate(-1deg) scale(1.05);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border-color: var(--brand-blue);
+  }
+}
+
+@media (max-width: 768px) {
+  @supports (animation-timeline: view()) {
+    .feature-card {
+      animation-name: cardHover;
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: both;
+      animation-timeline: view();
+      /* Activa el estado hover cuando el centro de la tarjeta cruza el centro de la pantalla */
+      animation-range: cover 45% cover 55%;
+    }
+  }
+}
+</style>

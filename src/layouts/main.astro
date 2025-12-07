@@ -18,7 +18,7 @@ const { title } = Astro.props ?? {};
   </head>
 
   <body>
-	<Navbar />
+  <Navbar client:load />
     <slot />
     <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
       <Background />
