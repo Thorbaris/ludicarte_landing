@@ -7,23 +7,12 @@
         </a>
       </div>
 
-      <!-- <nav class="hidden md:flex gap-8 items-center">
+      <nav class="hidden md:flex gap-8 items-center">
         <a href="/nosotros" class="text-slate-600 hover:text-primary transition">Nosotros</a>
         <a href="/actividades" class="text-slate-600 hover:text-primary transition">Actividades</a>
         <a href="/horarios_actividades" class="text-slate-600 hover:text-primary transition">Horarios y edades</a>
-      </nav> -->
+      </nav>
 
-      <DropdownMenu>
-    <DropdownMenuTrigger>Open</DropdownMenuTrigger>
-    <DropdownMenuContent>
-      <DropdownMenuLabel>My Account</DropdownMenuLabel>
-      <DropdownMenuSeparator />
-      <DropdownMenuItem>Profile</DropdownMenuItem>
-      <DropdownMenuItem>Billing</DropdownMenuItem>
-      <DropdownMenuItem>Team</DropdownMenuItem>
-      <DropdownMenuItem>Subscription</DropdownMenuItem>
-    </DropdownMenuContent>
-  </DropdownMenu>
       <div class="flex items-center gap-3">
         <button class="hidden md:inline-flex bg-linear-to-r from-green-400 to-blue-500 text-white px-6 py-2 rounded-lg hover:shadow-lg transition">
           Inscribirse
@@ -72,14 +61,6 @@
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 
 const isMenuOpen = ref(false);
 
