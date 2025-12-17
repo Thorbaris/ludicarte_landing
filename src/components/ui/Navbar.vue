@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-slate-200 shadow-sm">
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur supports-backdrop-filter:bg-background/60 border-b border-slate-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-28 flex items-center justify-between relative">
       <div class="flex items-center gap-6">
         <a href="/">
