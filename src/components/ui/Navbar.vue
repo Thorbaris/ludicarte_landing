@@ -14,8 +14,8 @@
       </nav>
 
       <div class="flex items-center gap-3">
-        <button class="hidden md:inline-flex bg-linear-to-r from-green-400 to-blue-500 text-white px-6 py-2 rounded-lg hover:shadow-lg transition">
-          Inscribirse
+        <button @click="goToContact" class="hidden md:inline-flex bg-linear-to-r from-green-400 to-blue-500 text-white px-6 py-2 rounded-lg hover:shadow-lg transition">
+          Contactar
         </button>
 
         <!-- Mobile hamburger -->
@@ -74,6 +74,22 @@ const closeMenu = () => {
 
 const handleEscape = (event) => {
   if (event.key === 'Escape') closeMenu();
+};
+
+const goToIndex = () => {
+  window.location.href = '/';
+};
+
+const goToContact = () => {
+  const contactSection = document.getElementById('contacto');
+  
+  // Si estamos en la página principal y el elemento existe, hacer scroll
+  if (window.location.pathname === '/' && contactSection) {
+    contactSection.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    // Si estamos en otra página, navegar a la principal con el hash
+    window.location.href = '/#contacto';
+  }
 };
 
 onMounted(() => {
