@@ -17,5 +17,8 @@
     "canvas-confetti": "^1.9.4",
     "tailwindcss": "^4.1.17",
     "vue": "^3.5.25"
+  },
+  "devDependencies": {
+    "vite-svg-loader": "^5.1.0"
   }
 }

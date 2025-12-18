@@ -10,11 +10,9 @@
           :description="program.description"
           :emojis="program.emojis"
           :color-scheme="program.color"
+          :icon="program.icono"
         >
-        <template #icon>
-          {{ program.icono }}
-        </template>
-      </Card>
+        </Card>
       </div>
     </div>
   </section>
@@ -22,7 +20,9 @@
 
 <script setup>
   import Card from '@/components/ui/Card.vue';
-
+  import IconoLibro from '@/assets/svg/book_icon.svg?component';
+  import IconoPaleta from '@/assets/svg/palette_icon.svg?component';
+  
   const programs = [
     { 
       id: 1, 
@@ -48,7 +48,7 @@
     { 
       id: 4, 
       icono: '🌍',
-      name: 'Inglés', emojis: ['🌍'],
+      name: 'Inglés', emojis: ['🌍', '🗣️'],
       description: 'Clases de inglés que combinan juego y aprendizaje para una mejor comprensión.',
       color: 'yellow-red'
     },

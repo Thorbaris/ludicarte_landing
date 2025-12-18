@@ -17,22 +17,18 @@
 
             <!-- Icono -->
             <div 
-              class="relative w-24 h-24 rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 group-hover:rotate-360"
+              class="relative w-24 h-24 rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 group-hover:rotate-360 text-5xl"
               :class="iconBgClass"
             >
-              <slot name="icon">
-                <svg
-                  class="w-16 h-16 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-                  <path d="M2 12h20" />
-                </svg>
-              </slot>
+
+                  <!-- Si es string (emoji), mostrar directamente -->
+                  <template v-if="typeof icon === 'string'">
+                    {{ icon }}
+                  </template>
+                  <!-- Si es componente, renderizar dinámicamente -->
+                  <component v-else :is="icon" class="w-12 h-12 text-white" />
+
+
 
               <!-- Estrellas decorativas -->
               <div v-if="showStars" class="absolute -top-2 -right-2 text-yellow-400 animate-bounce">
@@ -112,6 +108,9 @@ const props = defineProps({
   emojis: {
     type: Array,
     default: () => []
+  },
+  icon: {
+    default: '⭐'
   },
   colorScheme: {
     type: String,

@@ -71,10 +71,13 @@
       <button
         type="submit"
         :disabled="isSubmitting"
-        class="w-full py-4 px-6 rounded-xl font-bold text-white text-lg transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-        :class="isSubmitting ? 'bg-gray-400' : 'bg-linear-to-r from-pink-500 via-blue-500 to-green-500'"
+        class="w-full py-4 px-6 rounded-xl font-bold text-gray-700 text-2xl transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+        :class="isSubmitting ? 'bg-gray-400' : 'bg-linear-to-r from-(--brand-pink) via-(--brand-orange) to-(--brand-blue)'"
       >
-        {{ isSubmitting ? 'Enviando...' : '✉️ Enviar Mensaje' }}
+      <div class="flex gap-4 justify-center">
+        <span>{{ isSubmitting ? 'Enviando...' : 'Enviar Mensaje' }}</span>
+        <WhatsappIcon class="inline-block ml-2 w-10 h-10 text-green-600" />
+      </div>
       </button>
 
       <!-- Mensaje de éxito -->
@@ -90,6 +93,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import WhatsappIcon from '@/assets/svg/whatsapp.svg?component'
 
 const formData = ref({
   parentName: '',
@@ -103,12 +107,6 @@ const formData = ref({
 
 const ages = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-const interests = [
-  { value: 'artes', label: '🎨 Artes', color: 'pink' },
-  { value: 'deportes', label: '⚽ Deportes', color: 'blue' },
-  { value: 'aprendizaje', label: '📚 Aprendizaje', color: 'green' },
-  { value: 'ingles', label: '🗣️ Inglés', color: 'orange' }
-]
 
 const isSubmitting = ref(false)
 const showSuccess = ref(false)
