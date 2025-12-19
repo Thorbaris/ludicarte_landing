@@ -21,7 +21,7 @@
         </ul>
       </div> -->
       <div>
-        <h4 class="font-bold mb-4">Contacto</h4>
+        <h4 class="font-bold mb-4" @click="goToContact">Contacto</h4>
         <!-- <p class="text-slate-400 text-sm">info@casaludicarte.com</p> -->
         <p class="text-slate-400 text-sm">+56 XX XX X XX XX</p>
       </div>
@@ -31,3 +31,17 @@
     </div>
   </footer>
 </template>
+
+<script setup>
+  const goToContact = () => {
+  const contactSection = document.getElementById('contacto');
+  
+  // Si estamos en la página principal y el elemento existe, hacer scroll
+  if (window.location.pathname === '/' && contactSection) {
+    contactSection.scrollIntoView({ behavior: 'smooth' });
+  } else {
+    // Si estamos en otra página, navegar a la principal con el hash
+    window.location.href = '/#contacto';
+  }
+};
+</script>

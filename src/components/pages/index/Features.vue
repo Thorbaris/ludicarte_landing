@@ -1,9 +1,9 @@
 <template>
-  <section id="programas" class="py-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto">
+  <section id="programas" class="py-16 px-4 ">
+    <div class="">
       <h2 class="text-4xl font-bold text-center mb-12">Por que elegir Casa Ludicarte?</h2>
 
-      <div class="flex gap-6">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center">
         <Card
           v-for="program in programs"
           :title="program.name"
