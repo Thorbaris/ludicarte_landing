@@ -14,10 +14,10 @@
       </nav>
 
       <div class="flex items-center gap-3">
-        <button @click="goToContact" class="hidden md:inline-flex bg-linear-to-r from-green-400 to-blue-500 text-white px-6 py-2 rounded-lg hover:shadow-lg transition">
+
+        <button class="bg-linear-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-lg hover:shadow-lg transition" @click="goToContact">
           Contactar
         </button>
-
         <!-- Mobile hamburger -->
         <button
           class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl border border-slate-200 shadow-sm bg-white text-slate-700 hover:bg-slate-50 transition"
@@ -49,9 +49,7 @@
             <a href="/nosotros" class="text-slate-700 hover:text-primary transition" @click="closeMenu">Nosotros</a>
             <a href="/actividades" class="text-slate-700 hover:text-primary transition" @click="closeMenu">Actividades</a>
             <a href="/horarios_actividades" class="text-slate-700 hover:text-primary transition" @click="closeMenu">Horarios y edades</a>
-            <button class="bg-linear-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-lg hover:shadow-lg transition" @click="closeMenu">
-              Inscribirse
-            </button>
+
           </div>
         </div>
       </transition>
