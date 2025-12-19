@@ -112,12 +112,33 @@ const isSubmitting = ref(false)
 const showSuccess = ref(false)
 
 const handleSubmit = async () => {
+  console.log("fs")
   isSubmitting.value = true
   
-  // Simular envío del formulario
-  await new Promise(resolve => setTimeout(resolve, 1500))
+  // Construir mensaje para WhatsApp
+  const phoneNumber = '56995902288'
+  let message = `¡Hola! Me contacto desde la web de Ludicarte.\n\n`
+  message += `*Nombre del padre/madre:* ${formData.value.parentName}\n`
   
-  console.log('Datos del formulario:', formData.value)
+  if (formData.value.childName) {
+    message += `*Nombre del niño/a:* ${formData.value.childName}\n`
+  }
+  
+  if (formData.value.childAge) {
+    message += `*Edad del niño/a:* ${formData.value.childAge} años\n`
+  }
+  
+  if (formData.value.message) {
+    message += `\n*Mensaje:*\n${formData.value.message}`
+  }
+  
+  // Codificar mensaje para URL
+  const encodedMessage = encodeURIComponent(message)
+  console.log(encodedMessage)
+  
+  // Abrir WhatsApp con el mensaje
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
+  window.open(whatsappUrl, '_blank')
   
   isSubmitting.value = false
   showSuccess.value = true
