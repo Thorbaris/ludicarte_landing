@@ -2,6 +2,8 @@
 
 /* Colores corporativos */
 :root {
+	color-scheme: light only;
+	
 	--brand-pink: #ff7faf;
 	--brand-orange: #fea700;
 	--brand-blue: #37c6fe;
