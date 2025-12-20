@@ -1,7 +1,7 @@
 <template>
   <section id="programas" class="py-16 px-4 ">
-    <div class="">
-      <h2 class="text-4xl font-bold text-center mb-12">Por que elegir Casa Ludicarte?</h2>
+    <div class="max-w-10/12 flex flex-col mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-12"> ¿Por qué elegir Casa Ludicarte?</h2>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center">
         <Card
@@ -26,30 +26,41 @@
   const programs = [
     { 
       id: 1, 
-      icono: '🎨',
-      name: 'Artes', emojis: ['🎨', '🎵'],
-      description: 'Actividades diseñadas para desarrollar la imaginación y expresión artística de cada niño.',
+      icono: '🌿',
+      name: 'Ambiente Cálido y Seguro', emojis: ['🏡', '🫰🏼' , '🌱'],
+      // description: [
+      //   'Espacio preparado para los niños',
+      //   'Materiales naturales y sensoriales',
+      //   'Estimula la exploración libre y curiosidad',
+      // ],
       color: 'orange-pink'
     },    
     { 
       id: 2, 
-      icono: '⚽',
-      name: 'Deportes', emojis: ['⚽'],
-      description: 'Programas de educación física que fomentan la salud, coordinación y trabajo en equipo.',
+      icono: '🎨',
+      name: 'Enfoque Waldorf y Pedagogía lúdica', emojis: ['🪵', '🍃', '🧚🏼‍♀️'],
+      // description: ['Programas de educación física que fomentan la salud, coordinación y trabajo en equipo.'],
       color: 'blue-purple'
     },    
     { 
       id: 3,
-      icono: '📚',
-      name: 'Aprendizaje', emojis: [ '📚', '🧾'],
-      description: 'Métodos pedagógicos innovadores que hacen del aprendizaje una experiencia divertida.',
+      icono: '🧠',
+      name: 'Actividades Creativas y Artísticas', emojis: [ '🖍️', '🤸‍♂️', '🖌️'],
+      // description: ['Métodos pedagógicos innovadores que hacen del aprendizaje una experiencia divertida.'],
       color: 'green-teal'
     },
     { 
       id: 4, 
-      icono: '🌍',
-      name: 'Inglés', emojis: ['🌍', '🗣️'],
-      description: 'Clases de inglés que combinan juego y aprendizaje para una mejor comprensión.',
+      icono: '💛',
+      name: 'Acompañamiento Emocional', emojis: ['🌍', '🗣️'],
+      // description: ['Clases de inglés que combinan juego y aprendizaje para una mejor comprensión.'],
+      color: 'yellow-red'
+    },
+    { 
+      id: 5, 
+      icono: '📚',
+      name: 'Apoyo Psicopedagógico', emojis: ['🌍', '🗣️'],
+      // description: ['Clases de inglés que combinan juego y aprendizaje para una mejor comprensión.'],
       color: 'yellow-red'
     },
   ];

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative group w-fit">
+  <div class="relative group w-fit my-4" >
     <!-- Card principal -->
     <div 
       class="relative p-2 rounded-[2.5rem] shadow-2xl transform transition-all duration-300 hover:scale-105 hover:rotate-1"
@@ -20,15 +20,12 @@
               class="relative w-24 h-24 rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 group-hover:rotate-360 text-5xl"
               :class="iconBgClass"
             >
-
                   <!-- Si es string (emoji), mostrar directamente -->
                   <template v-if="typeof icon === 'string'">
                     {{ icon }}
                   </template>
                   <!-- Si es componente, renderizar dinámicamente -->
                   <component v-else :is="icon" class="w-12 h-12 text-white" />
-
-
 
               <!-- Estrellas decorativas -->
               <div v-if="showStars" class="absolute -top-2 -right-2 text-yellow-400 animate-bounce">
@@ -48,7 +45,7 @@
 
         <!-- Título con efecto divertido -->
         <h2 
-          class="text-4xl font-black text-center mb-4 bg-clip-text text-transparent leading-tight"
+          class="text-2xl font-black text-center mb-4 bg-clip-text text-transparent leading-tight"
           :class="titleGradientClass"
         >
           {{ title }}
@@ -65,11 +62,13 @@
         </div>
 
         <!-- Descripción -->
-        <div class="text-gray-700 text-center text-lg leading-relaxed font-medium">
+        <!-- <div class="text-gray-700 text-center text-lg leading-relaxed font-medium">
           <slot>
-            {{ description }}
+            <ul class="list-disc list-inside text-left">
+              <li v-for="(line, index) in description" :key="index">{{ line }}</li>
+            </ul>
           </slot>
-        </div>
+        </div> -->
 
         <!-- Emojis decorativos -->
         <div v-if="emojis.length > 0" class="flex justify-center gap-4 mt-6 text-3xl">
@@ -102,8 +101,8 @@ const props = defineProps({
     required: true
   },
   description: {
-    type: String,
-    default: ''
+    type: Array,
+    default: []
   },
   emojis: {
     type: Array,
