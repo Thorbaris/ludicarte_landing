@@ -19,7 +19,7 @@
             Un espacio donde tus hijos aprenden, juegan y crecen felices
           </p>
           <div class="flex gap-4">
-            <button class="border-2 border-(--brand-orange) text-(--brand-orange) px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition">
+            <button @click="goToContact" class="border-2 border-(--brand-orange) text-(--brand-orange) px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition">
               Contactanos
             </button>
           </div>
@@ -36,3 +36,17 @@
     </div>
   </section>
 </template>
+
+<script setup>
+  const goToContact = () => {
+    const contactSection = document.getElementById('contacto');
+    
+    // Si estamos en la página principal y el elemento existe, hacer scroll
+    if (window.location.pathname === '/' && contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Si estamos en otra página, navegar a la principal con el hash
+      window.location.href = '/#contacto';
+    }
+  };
+</script>
