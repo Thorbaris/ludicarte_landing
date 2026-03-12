@@ -116,7 +116,7 @@ const handleSubmit = async () => {
   isSubmitting.value = true
   
   // Construir mensaje para WhatsApp
-  const phoneNumber = '56995902288'
+  const phoneNumber = '56965279494'
   let message = `¡Hola! Me contacto desde la web de Ludicarte.\n\n`
   message += `*Nombre del padre/madre:* ${formData.value.parentName}\n`
   

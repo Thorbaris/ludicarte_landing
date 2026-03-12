@@ -1,7 +1,7 @@
 <template>
   <section id="programas" class="py-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-12">Nuestros Programas</h2>
+      <h2 class="subtitulo__seccion">Nuestros Programas</h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div 
           v-for="program in programs"

@@ -1,7 +1,7 @@
 <template>
   <section id="programas" class="py-16 px-4 ">
     <div class="max-w-10/12 flex flex-col mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-12"> ¿Por qué elegir Casa Ludicarte?</h2>
+      <h2 class="titulo__seccion"> ¿Por qué elegir Casa Ludicarte?</h2>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center">
         <Card

@@ -23,7 +23,7 @@
       <div>
         <h4 class="font-bold mb-4" @click="goToContact">Contacto</h4>
         <!-- <p class="text-slate-400 text-sm">info@casaludicarte.com</p> -->
-        <p class="text-slate-400 text-sm">+56 XX XX X XX XX</p>
+        <p class="text-slate-400 text-sm">+56 9 6527 9494</p>
       </div>
     </div>
     <div class="border-t border-slate-700 pt-4 text-center text-slate-400 text-sm">
