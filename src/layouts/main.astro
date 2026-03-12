@@ -17,12 +17,14 @@ const { title } = Astro.props ?? {};
     <title>{title ? `${title}` : 'Astro + TailwindCSS'}</title>
   </head>
 
-  <body>
-  <Navbar client:load />
-    <slot />
+  <body class="flex flex-col min-h-screen">
+      <Navbar client:load />
+    <main class="grow">
+      <slot />
+    </main>
     <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
       <Background />
     </div>
-	<Footer />
+    <Footer />
   </body>
 </html>

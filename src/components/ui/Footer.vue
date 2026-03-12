@@ -4,6 +4,7 @@
       <div>
         <h4 class="font-bold mb-4">Casa Ludicarte</h4>
         <p class="text-slate-400 text-sm">Educación divertida para niños.</p>
+        <p class="text-white text-sm">Los Faisanes 2682, Padre las Casas</p>
       </div>
       <div>
         <h4 class="font-bold mb-4">Enlaces</h4>
@@ -27,7 +28,7 @@
       </div>
     </div>
     <div class="border-t border-slate-700 pt-4 text-center text-slate-400 text-sm">
-      <p>&copy; 2025 Casa Ludicarte. Todos los derechos reservados.</p>
+      <p>&copy; 2026 Casa Ludicarte. Todos los derechos reservados.</p>
     </div>
   </footer>
 </template>

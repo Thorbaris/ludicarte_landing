@@ -3,6 +3,7 @@ import Main from '../layouts/main.astro';
 
 import Programs from '@/components/pages/index/Programs.vue';
 import Features from '@/components/pages/index/Features.vue';
+import Pronto from '@/components/ui/Pronto.vue';
 ---
 
 <Main title="Actividades — Ludicarte">
@@ -10,11 +11,12 @@ import Features from '@/components/pages/index/Features.vue';
     <h1 class="titulo__seccion">Actividades</h1>
     <p>
       Ofrecemos una variedad de actividades diseñadas para estimular habilidades
-      artísticas, motoras y sociales. A continuación se muestran nuestros programas actuales.
+      artísticas, motoras y sociales.
     </p>
+    <Pronto/>
   </section>
 
-  <Programs />
+  <!-- <Programs /> -->
 
   <!-- <Features /> -->
 </Main>
