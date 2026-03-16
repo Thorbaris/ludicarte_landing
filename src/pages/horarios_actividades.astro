@@ -1,6 +1,6 @@
 ---
 import Main from '../layouts/main.astro';
-import Pronto from '@/components/ui/Pronto.vue';
+
 ---
 
 <Main title="Horarios y edades — Ludicarte">
@@ -8,12 +8,23 @@ import Pronto from '@/components/ui/Pronto.vue';
     <h1 class="titulo__seccion">Horarios y edades</h1>
     <p>
       Aquí tienes una guía general de las actividades, sus edades recomendadas y horarios.
+      <strong>¡Recibimos niños de 4 a 10 años con ganas de pasarlo bien y aprender!</strong>
     </p>
   </section>
 
-  <section class="mx-auto max-w-4xl px-4 pb-12">
-    <div class="overflow-x-auto">
-      <Pronto />
+  <section class="mx-auto max-w-4xl px-4 pb-10">
+    <div class="grid gap-6 sm:grid-cols-2">
+      <div class="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-linear-to-br from-amber-50/80 via-white/70 to-rose-50/80 p-6 shadow-[0_25px_50px_-30px_rgba(0,0,0,0.45)] ring-1 ring-white/70">
+        <div class="absolute -top-8 -right-10 h-24 w-24 rounded-full bg-amber-200/40 blur-2xl"></div>
+        <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Jornada de mañana</p>
+        <p class="mt-2 inline-flex items-center rounded-full bg-amber-100/80 px-3 py-1 text-sm font-semibold text-amber-900">08:00 a 13:00</p>
+      </div>
+      <div class="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-linear-to-br from-sky-50/80 via-white/70 to-emerald-50/80 p-6 shadow-[0_25px_50px_-30px_rgba(0,0,0,0.45)] ring-1 ring-white/70">
+        <div class="absolute -top-8 -right-10 h-24 w-24 rounded-full bg-emerald-200/40 blur-2xl"></div>
+        <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Jornada de tarde</p>
+        <p class="mt-2 inline-flex items-center rounded-full bg-emerald-100/80 px-3 py-1 text-sm font-semibold text-emerald-900">14:00 a 19:00</p>
+      </div>
     </div>
   </section>
+
 </Main>
