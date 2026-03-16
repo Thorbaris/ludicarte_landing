@@ -105,7 +105,7 @@ const formData = ref({
   message: ''
 })
 
-const ages = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+const ages = [4, 5, 6, 7, 8, 9, 10]
 
 
 const isSubmitting = ref(false)
