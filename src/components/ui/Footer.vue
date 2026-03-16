@@ -3,15 +3,17 @@
     <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 mb-8">
       <div>
         <h4 class="font-bold mb-4">Casa Ludicarte</h4>
-        <p class="text-slate-400 text-sm">Educación divertida para niños.</p>
-        <p class="text-white text-sm">Los Faisanes 2682, Padre las Casas</p>
+        <ul class="space-y-2 text-sm text-slate-400">
+          <li class="">Educación divertida para niños.</li>
+          <li class="">Los Faisanes 2682, Padre las Casas</li>
+        </ul>
       </div>
       <div>
         <h4 class="font-bold mb-4">Enlaces</h4>
         <ul class="space-y-2 text-sm text-slate-400">
-          <li><a href="#" class="hover:text-white transition">Inicio</a></li>
-          <li><a href="#" class="hover:text-white transition">Programas</a></li>
-          <li><a href="#" class="hover:text-white transition">Contacto</a></li>
+          <li><a href="/" class="hover:text-white transition">Inicio</a></li>
+          <li><a href="/actividades" class="hover:text-white transition">Actividades</a></li>
+          <li><a href="/#contacto" class="hover:text-white transition">Contacto</a></li>
         </ul>
       </div>
       <!-- <div>
@@ -23,8 +25,9 @@
       </div> -->
       <div>
         <h4 class="font-bold mb-4" @click="goToContact">Contacto</h4>
-        <!-- <p class="text-slate-400 text-sm">info@casaludicarte.com</p> -->
-        <p class="text-slate-400 text-sm">+56 9 6527 9494</p>
+        <ul class="space-y-2 text-sm text-slate-400">
+          <li>+56 9 6527 9494</li>
+        </ul>
       </div>
     </div>
     <div class="border-t border-slate-700 pt-4 text-center text-slate-400 text-sm">
