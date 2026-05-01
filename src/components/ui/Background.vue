@@ -1,5 +1,5 @@
 <template>
-    <svg class="absolute w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
+    <svg class="w-full h-auto max-h-full" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
         <rect x="50" y="100" width="80" height="80" fill="#10b981" opacity="0.1" class="animate-float" />
         <rect x="900" y="200" width="100" height="100" fill="#f59e0b" opacity="0.1" class="animate-float-delay-1" />
         <circle cx="150" cy="600" r="60" fill="#ef4444" opacity="0.08" class="animate-float-delay-2" />
