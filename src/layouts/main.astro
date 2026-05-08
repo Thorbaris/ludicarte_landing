@@ -4,17 +4,85 @@ import Background from '@/components/ui/Background.vue';
 import Navbar from '@/components/ui/Navbar.vue';
 import Footer from '@/components/ui/Footer.vue';
 
-const { title } = Astro.props ?? {};
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const {
+  title = 'Ludicarte AfterSchool — Actividades extraescolares creativas para niños',
+  description = 'Ludicarte es un espacio after school dedicado a fomentar la creatividad, el arte y el aprendizaje lúdico en niños y niñas de 4 a 10 años. Talleres, actividades artísticas y horarios de mañana y tarde.',
+  keywords = 'ludicarte, after school, Temuco, Padre las Casas, actividades extraescolares, talleres infantiles, arte para niños, actividades creativas, ludoteca, niños, educación artística',
+  image = '/LogoBG.png',
+  type = 'website',
+  noindex = false,
+} = Astro.props ?? {};
+
+const siteName = 'Ludicarte AfterSchool';
+const fullTitle = title.includes('Ludicarte') ? title : `${title} — ${siteName}`;
+
+const origin = Astro.site ?? new URL(Astro.url.origin);
+const canonicalURL = new URL(Astro.url.pathname, origin).toString();
+const socialImage = new URL(image, origin).toString();
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="ico" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title ? `${title}` : 'Astro + TailwindCSS'}</title>
+
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={siteName} />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="language" content="Spanish" />
+    {noindex
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
+
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/IsoLogo.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={`${siteName} — ${title}`} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+
+    <!-- JSON-LD structured data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: siteName,
+        url: origin.toString(),
+        logo: socialImage,
+        description,
+      })}
+    />
   </head>
 
   <body class="flex flex-col min-h-screen">
