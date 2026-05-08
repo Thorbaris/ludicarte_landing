@@ -16,7 +16,7 @@
             <span class="text-(--brand-orange-dark)">para Niños</span>
           </h2>
           <p class="text-xl text-slate-600 mb-8">
-            Un espacio donde tus hijos aprenden, juegan y crecen felices
+            Un espacio donde tus hijos aprenden, juegan y crecen felices.
           </p>
           <div class="flex gap-4">
             <button @click="goToContact" class="border-2 border-(--brand-orange) text-(--brand-orange) px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition">
