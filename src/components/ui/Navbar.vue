@@ -1,69 +1,100 @@
 <template>
-  <div>
+  <div class="sticky top-0 z-50">
     <!-- Overlay para cerrar menú al hacer clic fuera -->
     <transition name="fade">
-      <div 
-        v-if="isMenuOpen" 
-        class="fixed inset-0 z-40 bg-black/25 backdrop-blur-sm md:hidden" 
+      <div
+        v-if="isMenuOpen"
+        class="fixed inset-0 bg-ink/25 backdrop-blur-sm md:hidden"
         @click="closeMenu"
       ></div>
     </transition>
 
-    <!-- Mobile menu dropdown -->
-    <transition name="fade-slide">
+    <header class="relative px-3 pt-3 sm:px-6">
       <div
-        v-if="isMenuOpen"
-        class="fixed top-28 inset-x-4 z-50 bg-white border border-slate-200 rounded-2xl shadow-xl md:hidden overflow-hidden"
+        data-solid
+        class="mx-auto flex h-[4.75rem] max-w-6xl sm:h-[5.5rem] items-center justify-between gap-3 rounded-full border-2 border-white bg-white/85 pl-5 pr-3 shadow-[0_14px_34px_-18px_rgb(59_42_34/0.45)] backdrop-blur-md sm:pl-7"
       >
-        <div class="flex flex-col p-4 gap-3">
-          <a href="/" class="text-slate-700 hover:text-primary transition" @click="closeMenu">Inicio</a>
-          <a href="/nosotros" class="text-slate-700 hover:text-primary transition" @click="closeMenu">Nosotros</a>
-          <a href="/actividades" class="text-slate-700 hover:text-primary transition" @click="closeMenu">Actividades</a>
-          <a href="/horarios_actividades" class="text-slate-700 hover:text-primary transition" @click="closeMenu">Horarios y edades</a>
-        </div>
-      </div>
-    </transition>
+        <a href="/" class="flex shrink-0 items-center" aria-label="Casa Ludicarte — Inicio">
+          <img src="/LogoBG.png" alt="Casa Ludicarte After School" width="382" height="270" class="h-[3.75rem] w-auto sm:h-[4.5rem]" />
+        </a>
 
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur supports-backdrop-filter:bg-background/60 border-b border-slate-200 shadow-sm" @click="closeMenu">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-28 flex items-center justify-between relative">
-        <div class="flex items-center gap-6">
-          <a href="/">
-            <img src="/LogoBG.png" alt="Ludicarte Logo" class="h-24 my-auto" />
+        <nav class="hidden items-center gap-1 md:flex" aria-label="Principal">
+          <a
+            v-for="link in links"
+            :key="link.href"
+            :href="link.href"
+            class="nav-link"
+            :class="{ 'nav-link--active': isActive(link.href) }"
+            :aria-current="isActive(link.href) ? 'page' : undefined"
+          >
+            {{ link.label }}
           </a>
-        </div>
-
-        <nav class="hidden md:flex gap-8 items-center">
-          <a href="/nosotros" class="text-slate-600 hover:text-primary transition">Nosotros</a>
-          <a href="/actividades" class="text-slate-600 hover:text-primary transition">Actividades</a>
-          <a href="/horarios_actividades" class="text-slate-600 hover:text-primary transition">Horarios y edades</a>
         </nav>
 
-        <div class="flex items-center gap-3">
-          <button class="bg-linear-to-r from-green-400 to-blue-500 text-white px-4 py-2 rounded-lg hover:shadow-lg transition" @click="goToContact">
-            Contactar
-          </button>
+        <div class="flex items-center gap-2">
+          <a href="/#contacto" class="btn btn-sm" @click="closeMenu">Contactar</a>
           <!-- Mobile hamburger -->
           <button
-            class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl border border-slate-200 shadow-sm bg-white text-slate-700 hover:bg-slate-50 transition"
+            class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-cream text-ink transition hover:bg-cream-deep md:hidden"
             :aria-expanded="isMenuOpen"
-            aria-label="Abrir menú"
+            :aria-label="isMenuOpen ? 'Cerrar menú' : 'Abrir menú'"
             @click.stop="toggleMenu"
           >
             <svg v-if="!isMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M4 7h16M4 12h16M4 17h16" />
             </svg>
             <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
       </div>
+
+      <!-- Mobile menu dropdown -->
+      <transition name="fade-slide">
+        <nav
+          v-if="isMenuOpen"
+          data-solid
+          class="absolute inset-x-3 top-full mt-2 overflow-hidden rounded-3xl border-2 border-white bg-white p-3 shadow-xl sm:inset-x-6 md:hidden"
+          aria-label="Principal"
+        >
+          <a
+            v-for="link in [home, ...links]"
+            :key="link.href"
+            :href="link.href"
+            class="nav-link block"
+            :class="{ 'nav-link--active': isActive(link.href) }"
+            :aria-current="isActive(link.href) ? 'page' : undefined"
+            @click="closeMenu"
+          >
+            {{ link.label }}
+          </a>
+        </nav>
+      </transition>
     </header>
   </div>
 </template>
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue';
+
+const props = defineProps({
+  // Ruta actual, para resaltar el enlace activo
+  pathname: {
+    type: String,
+    default: '/'
+  }
+});
+
+const home = { href: '/', label: 'Inicio' };
+
+const links = [
+  { href: '/nosotros', label: 'Nosotros' },
+  { href: '/actividades', label: 'Actividades' },
+  { href: '/horarios_actividades', label: 'Horarios y edades' },
+];
+
+const isActive = (href) => (props.pathname.replace(/\/$/, '') || '/') === href;
 
 const isMenuOpen = ref(false);
 
@@ -79,22 +110,6 @@ const handleEscape = (event) => {
   if (event.key === 'Escape') closeMenu();
 };
 
-const goToIndex = () => {
-  window.location.href = '/';
-};
-
-const goToContact = () => {
-  const contactSection = document.getElementById('contacto');
-  
-  // Si estamos en la página principal y el elemento existe, hacer scroll
-  if (window.location.pathname === '/' && contactSection) {
-    contactSection.scrollIntoView({ behavior: 'smooth' });
-  } else {
-    // Si estamos en otra página, navegar a la principal con el hash
-    window.location.href = '/#contacto';
-  }
-};
-
 onMounted(() => {
   window.addEventListener('keydown', handleEscape);
 });
@@ -105,8 +120,24 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-:root {
-  --primary: rgb(34 197 94);
+.nav-link {
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.nav-link:hover {
+  color: var(--color-ink);
+  background: var(--color-cream);
+}
+
+.nav-link--active {
+  color: var(--color-ink);
+  background: var(--color-brand-orange-pastel);
 }
 
 .fade-enter-active,

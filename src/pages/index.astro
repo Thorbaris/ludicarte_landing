@@ -2,6 +2,7 @@
 import Main from '../layouts/main.astro';
 
 import Hero from '@/components/pages/index/Hero.vue';
+import About from '@/components/pages/index/About.vue';
 // import Programs from '@/components/pages/index/Programs.vue';
 // import Team from '@/components/pages/index/Team.vue';
 import ContactForm from '@/components/pages/index/ContactForm.vue';
@@ -14,7 +15,7 @@ import Features from '@/components/pages/index/Features.vue';
 	description="Ludicarte es un after school dedicado a fomentar la creatividad y el aprendizaje a través del arte y el juego. Talleres y actividades para niños de 4 a 10 años."
 	keywords="ludicarte, after school, actividades extraescolares, talleres infantiles, arte para niños, ludoteca, educación creativa"
 >
-	<Hero client:load/>
+	<Hero />
 
 	<!-- <Programs /> -->
 
@@ -22,5 +23,6 @@ import Features from '@/components/pages/index/Features.vue';
 	<!-- <TeamMember name="María García" role="Directora" initials="MG" /> -->
 
 	<Features />
+	<About />
 	<ContactForm client:load />
 </Main>

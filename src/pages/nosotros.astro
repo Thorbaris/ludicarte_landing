@@ -1,6 +1,7 @@
 ---
 import Main from '../layouts/main.astro';
 
+import PageHeader from '@/components/ui/PageHeader.vue';
 import Team from '@/components/pages/index/Team.vue';
 import Features from '@/components/pages/index/Features.vue';
 ---
@@ -10,15 +11,14 @@ import Features from '@/components/pages/index/Features.vue';
   description="Conoce al equipo de Ludicarte: educadores y artistas apasionados por crear experiencias seguras y estimulantes para niños a través del arte y el juego."
   keywords="equipo ludicarte, educadores infantiles, sobre nosotros, after school"
 >
-  <section class="prose mx-auto py-12 px-4 w-3/5 bg-white/30 backdrop-blur supports-backdrop-filter:bg-background/60">
-    <h1 class="titulo__seccion">Nosotros</h1>
+  <PageHeader title="Nosotros" scene="equipo">
     <p>
       Ludicarte es un espacio dedicado a fomentar la creatividad y el aprendizaje a través
       de actividades lúdicas y artísticas para niños y niñas. Nuestro equipo combina
       experiencia educativa y pasión por las artes para crear programas seguros y
       estimulantes.
     </p>
-  </section>
+  </PageHeader>
 
   <Team />
 

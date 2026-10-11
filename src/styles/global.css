@@ -1,9 +1,43 @@
 @import "tailwindcss";
 
+/* static: las variables se emiten siempre, también las que solo se usan en <style> de componentes */
+@theme static {
+	--font-sans: 'Nunito Variable', ui-sans-serif, system-ui, sans-serif;
+	--font-display: 'Fredoka Variable', ui-rounded, 'Nunito Variable', system-ui, sans-serif;
+	--font-hand: 'Caveat Variable', 'Segoe Print', cursive;
+
+	--color-brand-pink: #ff7faf;
+	--color-brand-orange: #fea700;
+	--color-brand-blue: #37c6fe;
+	--color-brand-green: #a3c316;
+
+	--color-brand-pink-dark: #d86795;
+	--color-brand-orange-dark: #d88e00;
+	--color-brand-blue-dark: #2fa8d8;
+	--color-brand-green-dark: #8ba613;
+
+	--color-brand-pink-pastel: #ffd1e0;
+	--color-brand-orange-pastel: #ffe0b3;
+	--color-brand-blue-pastel: #b3e6ff;
+	--color-brand-green-pastel: #e6f0b3;
+
+	/* Variantes para texto: contraste suficiente sobre el fondo crema */
+	--color-brand-pink-ink: #c2336f;
+	--color-brand-orange-ink: #a85d00;
+	--color-brand-blue-ink: #0a78ab;
+	--color-brand-green-ink: #5c7600;
+
+	--color-cream: #fef7f2;
+	--color-cream-deep: #fbe9d7;
+	--color-wood: #ecc99d;
+	--color-ink: #3b2a22;
+	--color-ink-soft: #6b5a50;
+}
+
 /* Colores corporativos */
 :root {
 	color-scheme: light only;
-	
+
 	--brand-pink: #ff7faf;
 	--brand-orange: #fea700;
 	--brand-blue: #37c6fe;
@@ -32,96 +66,224 @@
 	--hard-4: #777777;
 }
 
-/* ensure layout takes full height so footer stays at bottom */
-html,
-body {
-    height: 100%;
+html {
+	scroll-behavior: smooth;
+	/* deja libre la barra de navegación fija al saltar a un ancla */
+	scroll-padding-top: 7rem;
 }
 
+/* ensure layout takes full height so footer stays at bottom */
 body {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+	font-family: var(--font-sans);
+	color: var(--color-ink);
+	background-color: var(--color-cream);
+	/* manchas de acuarela muy suaves; el lienzo 3D se dibuja encima de este fondo */
+	background-image:
+		radial-gradient(58rem 34rem at 92% -6rem, rgb(179 230 255 / 0.55), transparent 62%),
+		radial-gradient(46rem 30rem at -8% 14rem, rgb(255 209 224 / 0.5), transparent 62%),
+		radial-gradient(50rem 32rem at 100% 62rem, rgb(255 224 179 / 0.45), transparent 62%),
+		radial-gradient(44rem 30rem at 0% 104rem, rgb(230 240 179 / 0.5), transparent 62%);
+	background-repeat: no-repeat;
+	-webkit-font-smoothing: antialiased;
 }
 
 main {
     flex: 1 0 auto;
 }
-p {
-	font-size: 1.13rem;
-	line-height: 1.75rem;
-	color: var(--hard-3);
-	margin-bottom: 1.5rem;
-}
-.titulo__seccion {
-font-size: 2.7rem;
-font-weight: 700;
-letter-spacing: 0.02em;
-/* retain capitalization but not full uppercase */
-text-transform: none;
-text-align: center;
-margin: 0 auto 1.8rem; /* center block with auto horizontal margins */
-line-height: 1.1;
-/* simpler two-color gradient */
-background: linear-gradient(90deg, #2b6cb0 0%, #4299e1 100%);
--webkit-background-clip: text;
-background-clip: text;
-color: transparent;
-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-padding: 0 0.25rem;
 
+:focus-visible {
+	outline: 3px solid var(--color-brand-blue-ink);
+	outline-offset: 3px;
 }
 
-.titulo__seccion::after {
-content: '';
-display: block;
-width: 30%;
-height: 0.2rem;
-margin: 0.4rem auto 0;
-border-radius: 4px;
-background: #4299e1; /* single blue accent */
-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+@layer components {
+	.titulo__seccion,
+	.subtitulo__seccion {
+		font-family: var(--font-display);
+		font-weight: 600;
+		line-height: 1.1;
+		letter-spacing: -0.01em;
+		text-align: center;
+		text-wrap: balance;
+		color: var(--color-ink);
+	}
 
+	.titulo__seccion {
+		font-size: clamp(2rem, 1.4rem + 2.6vw, 3rem);
+		margin: 0 auto 2.5rem;
+	}
+
+	.subtitulo__seccion {
+		font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2.1rem);
+		margin: 0 auto 2rem;
+	}
+
+	/* subrayado con los cuatro colores del arcoíris */
+	.titulo__seccion::after,
+	.subtitulo__seccion::after {
+		content: '';
+		display: block;
+		width: 6.5rem;
+		height: 0.5rem;
+		margin: 1rem auto 0;
+		border-radius: 999px;
+		background: linear-gradient(
+			90deg,
+			var(--brand-pink) 0 25%,
+			var(--brand-orange) 25% 50%,
+			var(--brand-blue) 50% 75%,
+			var(--brand-green) 75% 100%
+		);
+	}
+
+	/* Rótulo manuscrito sobre los títulos */
+	.eyebrow {
+		font-family: var(--font-hand);
+		font-size: 1.6rem;
+		font-weight: 600;
+		line-height: 1;
+		text-align: center;
+		color: var(--color-brand-pink-ink);
+		margin-bottom: 0.4rem;
+	}
+
+	/* Botón "de juguete": canto inferior de color que se hunde al presionar */
+	.btn {
+		--btn-bg: var(--brand-orange);
+		--btn-edge: #c98100;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.6rem;
+		padding: 0.8rem 1.7rem;
+		border-radius: 999px;
+		font-family: var(--font-display);
+		font-size: 1.1rem;
+		font-weight: 600;
+		line-height: 1.2;
+		color: var(--color-ink);
+		background: var(--btn-bg);
+		box-shadow: 0 5px 0 var(--btn-edge);
+		cursor: pointer;
+		transition: transform 0.12s ease, box-shadow 0.12s ease;
+	}
+
+	.btn:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 7px 0 var(--btn-edge);
+	}
+
+	.btn:active {
+		transform: translateY(4px);
+		box-shadow: 0 1px 0 var(--btn-edge);
+	}
+
+	.btn:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+		transform: none;
+		box-shadow: 0 5px 0 var(--btn-edge);
+	}
+
+	.btn-white {
+		--btn-bg: #ffffff;
+		--btn-edge: #ead6c2;
+	}
+
+	.btn-whatsapp {
+		--btn-bg: #4ade80;
+		--btn-edge: #1f9d55;
+	}
+
+	.btn-sm {
+		padding: 0.55rem 1.15rem;
+		font-size: 1rem;
+		box-shadow: 0 4px 0 var(--btn-edge);
+	}
+
+	/* Tarjeta con canto de color, como un bloque de madera pintado */
+	.block-card {
+		--edge: var(--color-wood);
+		background: #ffffff;
+		border-radius: 2rem;
+		box-shadow: 0 8px 0 var(--edge), 0 22px 40px -22px rgb(59 42 34 / 0.35);
+	}
+
+	.chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.4rem 0.95rem;
+		border-radius: 999px;
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: var(--color-ink);
+		background: rgb(255 255 255 / 0.85);
+		box-shadow: 0 2px 0 var(--color-cream-deep);
+	}
+
+	/* Hueco del DOM donde el lienzo 3D dibuja la escena (ver World.vue) */
+	.stage {
+		position: relative;
+	}
+
+	/* Logo de respaldo: se ve mientras carga la escena o si no hay WebGL */
+	.stage__fallback {
+		position: absolute;
+		inset: 0;
+		margin: auto;
+		width: 58%;
+		max-height: 70%;
+		object-fit: contain;
+		transition: opacity 0.5s ease;
+	}
+
+	.scene-ready .stage__fallback {
+		opacity: 0;
+	}
+
+	/* Nota manuscrita junto a la escena del inicio: solo se ofrece cuando el 3D está en pantalla */
+	.hero-note {
+		display: none;
+		align-items: flex-end;
+		justify-content: center;
+		gap: 0.4rem;
+		font-family: var(--font-hand);
+		font-size: 1.7rem;
+		font-weight: 600;
+		line-height: 1;
+		color: var(--color-brand-pink-ink);
+		transform: rotate(-5deg);
+		pointer-events: none;
+	}
+
+	.hero-note svg {
+		width: 3rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.scene-ready .hero-note {
+		display: flex;
+	}
+
+	@media (width >= 64rem) {
+		.hero-note {
+			position: absolute;
+			left: -3%;
+			bottom: -7%;
+		}
+	}
 }
-/* highlight bar behind title */
-.titulo__seccion {
-background-color: rgba(255, 255, 255, 0.2);
-padding: 0.25rem 0.5rem;
-border-radius: 0.25rem;
-}
 
-.subtitulo__seccion {
-font-size: 1.8rem;
-font-weight: 700;
-letter-spacing: 0.02em;
-/* retain capitalization but not full uppercase */
-text-transform: none;
-text-align: center;
-margin: 0 auto 1.5rem; /* center block with auto horizontal margins */
-line-height: 1.1;
-/* simpler two-color gradient */
-background: linear-gradient(90deg, #2b6cb0 0%, #4299e1 100%);
--webkit-background-clip: text;
-background-clip: text;
-color: transparent;
-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-padding: 0 0.25rem;
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
 
-}
-
-.subtitulo__seccion::after {
-content: '';
-display: block;
-width: 30%;
-height: 0.1rem;
-margin: 0.4rem auto 0;
-border-radius: 4px;
-background: #4299e1; /* single blue accent */
-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-
-}
-/* highlight bar behind title */
-.subtitulo__seccion {
-background-color: rgba(255, 255, 255, 0.2);
-padding: 0.25rem 0.5rem;
-border-radius: 0.25rem;
+	.btn {
+		transition: none;
+	}
 }

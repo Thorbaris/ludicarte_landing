@@ -1,6 +1,9 @@
 ---
+import '@fontsource-variable/fredoka';
+import '@fontsource-variable/nunito';
+import '@fontsource-variable/caveat';
 import '../styles/global.css';
-import Background from '@/components/ui/Background.vue';
+import Scene3D from '@/components/three/Scene3D.vue';
 import Navbar from '@/components/ui/Navbar.vue';
 import Footer from '@/components/ui/Footer.vue';
 
@@ -43,7 +46,7 @@ const socialImage = new URL(image, origin).toString();
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <meta name="author" content={siteName} />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#fef7f2" />
     <meta name="language" content="Spanish" />
     {noindex
       ? <meta name="robots" content="noindex, nofollow" />
@@ -86,13 +89,12 @@ const socialImage = new URL(image, origin).toString();
   </head>
 
   <body class="flex flex-col min-h-screen">
-      <Navbar client:load />
+    <!-- Lienzo 3D (TresJS): fijo detrás del contenido, solo en el cliente -->
+    <Scene3D client:only="vue" />
+    <Navbar client:load pathname={Astro.url.pathname} />
     <main class="grow">
       <slot />
     </main>
-    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none flex items-center justify-center">
-      <Background />
-    </div>
     <Footer />
   </body>
 </html>

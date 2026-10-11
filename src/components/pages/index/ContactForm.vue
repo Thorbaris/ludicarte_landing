@@ -1,94 +1,95 @@
 <template>
-    <div  id="contacto" style="margin-top: -100px;" class="absolute"></div>
-  <div class="w-full max-w-2xl mx-auto p-6 bg-white rounded-3xl shadow-xl my-12">
-    <div class="mb-8 text-center">
-      <h2 class="text-4xl font-bold mb-2">
-        <span class="text-green-600">¡Contáctanos!</span>
-      </h2>
-      <p class="text-gray-600">Estamos aquí para responder todas tus preguntas</p>
-    </div>
+  <section id="contacto" class="px-4 py-14 sm:px-6 lg:px-8">
+    <div class="mx-auto grid max-w-5xl items-start gap-10 lg:grid-cols-[1fr_1.15fr]">
+      <div class="text-center lg:pt-6 lg:text-left">
+        <p class="eyebrow lg:text-left">Conversemos</p>
+        <h2 class="font-display text-4xl font-semibold leading-tight sm:text-5xl">¡Contáctanos!</h2>
+        <p class="mt-4 text-lg text-ink-soft">Estamos aquí para responder todas tus preguntas</p>
 
-    <form @submit.prevent="handleSubmit" class="space-y-6">
-      <!-- Nombre del Padre/Madre -->
-      <div>
-        <label for="parentName" class="block text-sm font-semibold text-gray-700 mb-2">
-          Nombre del Padre/Madre *
-        </label>
-        <input
-          id="parentName"
-          v-model="formData.parentName"
-          type="text"
-          required
-          class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-400 transition-colors"
-          placeholder="Tu nombre completo"
-        />
+        <ul class="mt-8 inline-flex flex-col gap-4 text-left">
+          <li class="contact-item">
+            <span class="contact-item__icon bg-brand-pink-pastel" aria-hidden="true">📍</span>
+            <span>Los Faisanes 2682,<br />Padre Las Casas</span>
+          </li>
+          <li class="contact-item">
+            <span class="contact-item__icon bg-brand-blue-pastel" aria-hidden="true">📞</span>
+            <a href="tel:+56965279494" class="font-bold underline-offset-4 hover:underline">+56 9 6527 9494</a>
+          </li>
+          <li class="contact-item">
+            <span class="contact-item__icon bg-brand-orange-pastel" aria-hidden="true">🕗</span>
+            <span>Mañana 08:00 a 13:00<br />Tarde 14:00 a 19:00</span>
+          </li>
+        </ul>
       </div>
 
-      <!-- Nombre del Niño/a -->
-      <div>
-        <label for="childName" class="block text-sm font-semibold text-gray-700 mb-2">
-          Nombre del Niño/a
-        </label>
-        <input
-          id="childName"
-          v-model="formData.childName"
-          type="text"
-          class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-pink-400 transition-colors"
-          placeholder="Nombre de tu hijo/a"
-        />
-      </div>
+      <form @submit.prevent="handleSubmit" data-solid class="contact-card block-card space-y-5 p-6 sm:p-9">
+        <!-- Nombre del Padre/Madre -->
+        <div>
+          <label for="parentName" class="field-label">Nombre del Padre/Madre *</label>
+          <input
+            id="parentName"
+            v-model="formData.parentName"
+            type="text"
+            required
+            autocomplete="name"
+            class="field"
+            placeholder="Tu nombre completo"
+          />
+        </div>
 
-      <!-- Edad del Niño/a -->
-      <div>
-        <label for="childAge" class="block text-sm font-semibold text-gray-700 mb-2">
-          Edad del Niño/a
-        </label>
-        <select
-          id="childAge"
-          v-model="formData.childAge"
-          class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-orange-400 transition-colors"
+        <div class="grid gap-5 sm:grid-cols-[1fr_11rem]">
+          <!-- Nombre del Niño/a -->
+          <div>
+            <label for="childName" class="field-label">Nombre del Niño/a</label>
+            <input
+              id="childName"
+              v-model="formData.childName"
+              type="text"
+              class="field"
+              placeholder="Nombre de tu hijo/a"
+            />
+          </div>
+
+          <!-- Edad del Niño/a -->
+          <div>
+            <label for="childAge" class="field-label">Edad del Niño/a</label>
+            <select id="childAge" v-model="formData.childAge" class="field">
+              <option value="">Selecciona</option>
+              <option v-for="age in ages" :key="age" :value="age">{{ age }} años</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Mensaje -->
+        <div>
+          <label for="message" class="field-label">Mensaje</label>
+          <textarea
+            id="message"
+            v-model="formData.message"
+            rows="4"
+            class="field resize-none"
+            placeholder="¿Tienes alguna pregunta o comentario?"
+          ></textarea>
+        </div>
+
+        <!-- Botón de Envío -->
+        <button type="submit" :disabled="isSubmitting" class="btn btn-whatsapp w-full text-xl">
+          <span>{{ isSubmitting ? 'Enviando...' : 'Enviar Mensaje' }}</span>
+          <WhatsappIcon class="h-8 w-8" aria-hidden="true" />
+        </button>
+        <p class="text-center text-sm text-ink-soft">Se abrirá WhatsApp con tu mensaje listo para enviar.</p>
+
+        <!-- Mensaje de éxito -->
+        <div
+          v-if="showSuccess"
+          role="status"
+          class="rounded-2xl bg-brand-green-pastel p-4 text-center font-bold text-brand-green-ink"
         >
-          <option value="">Selecciona una edad</option>
-          <option v-for="age in ages" :key="age" :value="age">{{ age }} años</option>
-        </select>
-      </div>      
-
-      <!-- Mensaje -->
-      <div>
-        <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">
-          Mensaje
-        </label>
-        <textarea
-          id="message"
-          v-model="formData.message"
-          rows="4"
-          class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-400 transition-colors resize-none"
-          placeholder="¿Tienes alguna pregunta o comentario?"
-        ></textarea>
-      </div>
-
-      <!-- Botón de Envío -->
-      <button
-        type="submit"
-        :disabled="isSubmitting"
-        class="w-full py-4 px-6 rounded-xl font-bold text-gray-700 text-2xl transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-        :class="isSubmitting ? 'bg-gray-400' : 'bg-linear-to-r from-(--brand-pink) via-(--brand-orange) to-(--brand-blue)'"
-      >
-      <div class="flex gap-4 justify-center">
-        <span>{{ isSubmitting ? 'Enviando...' : 'Enviar Mensaje' }}</span>
-        <WhatsappIcon class="inline-block ml-2 w-10 h-10 text-green-600" />
-      </div>
-      </button>
-
-      <!-- Mensaje de éxito -->
-      <div
-        v-if="showSuccess"
-        class="p-4 bg-green-100 border-2 border-green-400 rounded-xl text-green-700 text-center font-semibold animate-bounce"
-      >
-        ¡Mensaje enviado con éxito! Te contactaremos pronto 🎉
-      </div>
-    </form>
-  </div>
+          ¡Mensaje enviado con éxito! Te contactaremos pronto 🎉
+        </div>
+      </form>
+    </div>
+  </section>
 </template>
 
 <script setup>
@@ -112,37 +113,35 @@ const isSubmitting = ref(false)
 const showSuccess = ref(false)
 
 const handleSubmit = async () => {
-  console.log("fs")
   isSubmitting.value = true
-  
+
   // Construir mensaje para WhatsApp
   const phoneNumber = '56965279494'
   let message = `¡Hola! Me contacto desde la web de Ludicarte.\n\n`
   message += `*Nombre del padre/madre:* ${formData.value.parentName}\n`
-  
+
   if (formData.value.childName) {
     message += `*Nombre del niño/a:* ${formData.value.childName}\n`
   }
-  
+
   if (formData.value.childAge) {
     message += `*Edad del niño/a:* ${formData.value.childAge} años\n`
   }
-  
+
   if (formData.value.message) {
     message += `\n*Mensaje:*\n${formData.value.message}`
   }
-  
+
   // Codificar mensaje para URL
   const encodedMessage = encodeURIComponent(message)
-  console.log(encodedMessage)
-  
+
   // Abrir WhatsApp con el mensaje
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
   window.open(whatsappUrl, '_blank')
-  
+
   isSubmitting.value = false
   showSuccess.value = true
-  
+
   // Resetear formulario después de 3 segundos
   setTimeout(() => {
     formData.value = {
@@ -158,3 +157,54 @@ const handleSubmit = async () => {
   }, 3000)
 }
 </script>
+
+<style scoped>
+.contact-card {
+  --edge: var(--color-brand-pink);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.contact-item__icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.4rem;
+  border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--color-cream-deep);
+  border-radius: 1rem;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.field::placeholder {
+  color: #a08e82;
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--color-brand-blue);
+  background: #ffffff;
+}
+</style>

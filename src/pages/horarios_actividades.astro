@@ -1,6 +1,13 @@
 ---
 import Main from '../layouts/main.astro';
 
+import PageHeader from '@/components/ui/PageHeader.vue';
+
+const jornadas = [
+  { nombre: 'Jornada de mañana', horario: '08:00 a 13:00', icono: '☀️', color: 'orange' },
+  { nombre: 'Jornada de tarde', horario: '14:00 a 19:00', icono: '🌤️', color: 'blue' },
+  { nombre: 'Edades', horario: '4 a 10 años', icono: '🧒', color: 'green' },
+];
 ---
 
 <Main
@@ -8,26 +15,29 @@ import Main from '../layouts/main.astro';
   description="Consulta los horarios de mañana (08:00 a 13:00) y tarde (14:00 a 19:00) de Ludicarte AfterSchool, así como las edades recomendadas para cada actividad (4 a 10 años)."
   keywords="horarios after school, edades recomendadas, actividades para niños, ludicarte horarios"
 >
-  <section class="prose mx-auto py-12 px-4 w-3/5 bg-white/30 backdrop-blur supports-backdrop-filter:bg-background/60">
-    <h1 class="titulo__seccion">Horarios y edades</h1>
+  <PageHeader title="Horarios y edades" scene="horarios">
     <p>
       Aquí tienes una guía general de las actividades, sus edades recomendadas y horarios.
-      <strong>¡Recibimos niños de 4 a 10 años con ganas de pasarlo bien y aprender!</strong>
+      <strong class="text-ink">¡Recibimos niños de 4 a 10 años con ganas de pasarlo bien y aprender!</strong>
     </p>
-  </section>
+  </PageHeader>
 
-  <section class="mx-auto max-w-4xl px-4 pb-10">
-    <div class="grid gap-6 sm:grid-cols-2">
-      <div class="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-linear-to-br from-amber-50/80 via-white/70 to-rose-50/80 p-6 shadow-[0_25px_50px_-30px_rgba(0,0,0,0.45)] ring-1 ring-white/70">
-        <div class="absolute -top-8 -right-10 h-24 w-24 rounded-full bg-amber-200/40 blur-2xl"></div>
-        <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Jornada de mañana</p>
-        <p class="mt-2 inline-flex items-center rounded-full bg-amber-100/80 px-3 py-1 text-sm font-semibold text-amber-900">08:00 a 13:00</p>
-      </div>
-      <div class="relative overflow-hidden rounded-2xl border border-slate-200/60 bg-linear-to-br from-sky-50/80 via-white/70 to-emerald-50/80 p-6 shadow-[0_25px_50px_-30px_rgba(0,0,0,0.45)] ring-1 ring-white/70">
-        <div class="absolute -top-8 -right-10 h-24 w-24 rounded-full bg-emerald-200/40 blur-2xl"></div>
-        <p class="text-xs uppercase tracking-[0.2em] text-slate-500">Jornada de tarde</p>
-        <p class="mt-2 inline-flex items-center rounded-full bg-emerald-100/80 px-3 py-1 text-sm font-semibold text-emerald-900">14:00 a 19:00</p>
-      </div>
+  <section class="mx-auto max-w-5xl px-4 pb-14 pt-6 sm:px-6 lg:px-8">
+    <ul class="grid gap-x-6 gap-y-8 sm:grid-cols-3">
+      {jornadas.map((jornada) => (
+        <li
+          data-solid
+          class="block-card p-7 text-center"
+          style={`--edge: var(--brand-${jornada.color})`}
+        >
+          <span class="text-4xl" aria-hidden="true">{jornada.icono}</span>
+          <p class="mt-3 text-sm font-bold uppercase tracking-[0.18em] text-ink-soft">{jornada.nombre}</p>
+          <p class="mt-2 font-display text-3xl font-semibold">{jornada.horario}</p>
+        </li>
+      ))}
+    </ul>
+    <div class="mt-12 text-center">
+      <a href="/#contacto" class="btn">Contáctanos</a>
     </div>
   </section>
 

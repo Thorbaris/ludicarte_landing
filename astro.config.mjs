@@ -25,5 +25,16 @@ export default defineConfig({
     }
   },
 
-  integrations: [vue()],
+  integrations: [
+    vue({
+      template: {
+        compilerOptions: {
+          // Los elementos <Tres*> y <primitive> los resuelve el renderer de TresJS, no Vue
+          isCustomElement: (tag) =>
+            (/^Tres[A-Z]/.test(tag) && !['TresCanvas', 'TresCanvasContext', 'TresPortal'].includes(tag)) ||
+            tag === 'primitive',
+        },
+      },
+    }),
+  ],
 });

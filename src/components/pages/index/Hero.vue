@@ -1,52 +1,55 @@
 <template>
-  <section class="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-    <!-- Formas geométricas de fondo -->
-    <svg class="absolute inset-0 w-full h-full pointer-events-none -z-5" preserveAspectRatio="none">
-      <circle cx="15%" cy="20%" r="120" fill="rgba(34, 197, 94, 0.1)" />
-      <circle cx="85%" cy="80%" r="150" fill="rgba(255, 107, 107, 0.1)" />
-      <rect x="70%" y="10%" width="150" height="150" fill="rgba(251, 146, 60, 0.08)" opacity="0.8" />
-    </svg>
-
-    <div class="max-w-7xl mx-auto relative z-10">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 class="text-5xl md:text-6xl font-bold mb-6">
-            <span class="text-(--brand-green-dark)">Educación</span>
-            <span class="block text-(--brand-blue-dark)">Divertida</span>
-            <span class="text-(--brand-orange-dark)">para Niños</span>
-          </h2>
-          <p class="text-xl text-slate-600 mb-8">
-            Un espacio donde tus hijos aprenden, juegan y crecen felices.
-          </p>
-          <div class="flex gap-4">
-            <button @click="goToContact" class="border-2 border-(--brand-orange) text-(--brand-orange) px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition">
-              Contactanos
-            </button>
-          </div>
-        </div> 
-        <div class="relative">
-          <img 
-            src="/ninos_jugando.jpg" 
-            alt="Niños aprendiendo" 
-            class="rounded-2xl shadow-2xl"
-          />
-          <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-yellow-300 rounded-full opacity-40 blur-xl"></div>
+  <section class="px-4 pb-14 pt-6 sm:px-6 lg:px-8 lg:pb-20 lg:pt-10">
+    <div class="mx-auto grid max-w-6xl items-center gap-4 lg:grid-cols-[1fr_1.15fr] lg:gap-2">
+      <div class="text-center lg:text-left">
+        <p class="chip">
+          <span aria-hidden="true">🌈</span>
+          After school · niños y niñas de 4 a 10 años
+        </p>
+        <h1 class="mt-5 font-display text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl xl:text-7xl">
+          <span class="text-brand-green-ink">Educación</span>
+          <span class="block text-brand-blue-ink">divertida</span>
+          <span class="text-brand-orange-ink">para niños</span>
+        </h1>
+        <p class="mx-auto mt-6 max-w-md text-xl leading-relaxed text-ink-soft lg:mx-0">
+          Un espacio donde tus hijos aprenden, juegan y crecen felices.
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
+          <a href="/#contacto" class="btn">Contáctanos</a>
+          <a href="/horarios_actividades" class="btn btn-white">Ver horarios</a>
         </div>
+        <ul class="mt-9 flex flex-wrap justify-center gap-2 lg:justify-start">
+          <li v-for="fact in facts" :key="fact.text" class="chip">
+            <span aria-hidden="true">{{ fact.icon }}</span>
+            {{ fact.text }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="relative order-first lg:order-last">
+        <Stage
+          scene="casa"
+          class="mx-auto aspect-[6.4/5] w-full max-w-md lg:max-w-none"
+          label="Mundo de juguetes de madera en 3D: el arcoíris de Casa Ludicarte, una casita, árboles y muñecos"
+        />
+        <p class="hero-note" aria-hidden="true">
+          ¡Toca los juguetes!
+          <svg viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 30c14 6 32 2 44-18" />
+            <path d="M38 12l11-1 1 11" />
+          </svg>
+        </p>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-  const goToContact = () => {
-    const contactSection = document.getElementById('contacto');
-    
-    // Si estamos en la página principal y el elemento existe, hacer scroll
-    if (window.location.pathname === '/' && contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      // Si estamos en otra página, navegar a la principal con el hash
-      window.location.href = '/#contacto';
-    }
-  };
+import Stage from '@/components/ui/Stage.vue';
+
+const facts = [
+  { icon: '☀️', text: 'Mañana 08:00 a 13:00' },
+  { icon: '🌤️', text: 'Tarde 14:00 a 19:00' },
+  { icon: '📍', text: 'Padre Las Casas' },
+];
 </script>

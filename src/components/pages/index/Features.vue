@@ -1,67 +1,100 @@
 <template>
-  <section id="programas" class="py-16 px-4 ">
-    <div class="max-w-10/12 flex flex-col mx-auto">
-      <h2 class="titulo__seccion"> ¿Por qué elegir Casa Ludicarte?</h2>
+  <section id="programas" class="px-4 py-14 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl">
+      <p class="eyebrow">Crecer jugando</p>
+      <h2 class="titulo__seccion">¿Por qué elegir Casa Ludicarte?</h2>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center">
-        <Card
+      <ul class="flex flex-wrap justify-center gap-x-6 gap-y-8">
+        <li
           v-for="program in programs"
-          :title="program.name"
-          :description="program.description"
-          :emojis="program.emojis"
-          :color-scheme="program.color"
-          :icon="program.icono"
+          :key="program.id"
+          data-solid
+          class="feature block-card w-full max-w-xs p-7 text-center sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+          :style="{ '--edge': `var(--brand-${program.color})`, '--tint': `var(--brand-${program.color}-pastel)` }"
         >
-        </Card>
-      </div>
+          <div class="feature__icon" aria-hidden="true">{{ program.icono }}</div>
+          <h3 class="mt-5 font-display text-2xl font-semibold leading-tight text-balance">
+            {{ program.name }}
+          </h3>
+          <p class="mt-4 flex justify-center gap-3 text-2xl" aria-hidden="true">
+            <span v-for="emoji in program.emojis" :key="emoji">{{ emoji }}</span>
+          </p>
+        </li>
+      </ul>
     </div>
   </section>
 </template>
 
 <script setup>
-  import Card from '@/components/ui/Card.vue';
-  import IconoLibro from '@/assets/svg/book_icon.svg?component';
-  import IconoPaleta from '@/assets/svg/palette_icon.svg?component';
-  
   const programs = [
-    { 
-      id: 1, 
+    {
+      id: 1,
       icono: '🌿',
       name: 'Ambiente Cálido y Seguro', emojis: ['🏡', '🫰🏼' , '🌱'],
-      // description: [
-      //   'Espacio preparado para los niños',
-      //   'Materiales naturales y sensoriales',
-      //   'Estimula la exploración libre y curiosidad',
-      // ],
-      color: 'orange-pink'
-    },    
-    { 
-      id: 2, 
+      color: 'green'
+    },
+    {
+      id: 2,
       icono: '🎨',
       name: 'Enfoque Waldorf y Pedagogía lúdica', emojis: ['🪵', '🍃', '🧚🏼‍♀️'],
-      // description: ['Programas de educación física que fomentan la salud, coordinación y trabajo en equipo.'],
-      color: 'blue-purple'
-    },    
-    { 
+      color: 'pink'
+    },
+    {
       id: 3,
       icono: '🧠',
       name: 'Actividades Creativas y Artísticas', emojis: [ '🖍️', '🤸‍♂️', '🖌️'],
-      // description: ['Métodos pedagógicos innovadores que hacen del aprendizaje una experiencia divertida.'],
-      color: 'green-teal'
+      color: 'blue'
     },
-    { 
-      id: 4, 
+    {
+      id: 4,
       icono: '💛',
       name: 'Acompañamiento Emocional', emojis: ['🌍', '🗣️'],
-      // description: ['Clases de inglés que combinan juego y aprendizaje para una mejor comprensión.'],
-      color: 'yellow-red'
+      color: 'orange'
     },
-    { 
-      id: 5, 
+    {
+      id: 5,
       icono: '📚',
       name: 'Apoyo Psicopedagógico', emojis: ['🌍', '🗣️'],
-      // description: ['Clases de inglés que combinan juego y aprendizaje para una mejor comprensión.'],
-      color: 'yellow-red'
+      color: 'green'
     },
   ];
 </script>
+
+<style scoped>
+.feature {
+  transition: transform 0.2s ease;
+}
+
+.feature:hover {
+  transform: translateY(-6px) rotate(-1deg);
+}
+
+.feature:nth-child(even):hover {
+  transform: translateY(-6px) rotate(1deg);
+}
+
+/* Mancha de pintura detrás del ícono */
+.feature__icon {
+  display: grid;
+  place-items: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  margin: 0 auto;
+  font-size: 2.6rem;
+  background: var(--tint);
+  border-radius: 46% 54% 58% 42% / 52% 44% 56% 48%;
+  transition: border-radius 0.4s ease, transform 0.4s ease;
+}
+
+.feature:hover .feature__icon {
+  border-radius: 56% 44% 42% 58% / 44% 56% 48% 52%;
+  transform: scale(1.08) rotate(6deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature,
+  .feature__icon {
+    transition: none;
+  }
+}
+</style>

@@ -11,14 +11,20 @@
   "dependencies": {
     "@astrojs/mdx": "^5.0.0",
     "@astrojs/vue": "^6.0.0",
+    "@fontsource-variable/caveat": "^5.3.0",
+    "@fontsource-variable/fredoka": "^5.3.0",
+    "@fontsource-variable/nunito": "^5.3.0",
     "@tailwindcss/vite": "^4.1.17",
+    "@tresjs/core": "^5.9.3",
     "@types/canvas-confetti": "^1.9.0",
     "astro": "^6.0.4",
     "canvas-confetti": "^1.9.4",
     "tailwindcss": "^4.1.17",
+    "three": "^0.186.1",
     "vue": "^3.5.25"
   },
   "devDependencies": {
+    "@types/three": "^0.186.0",
     "vite-svg-loader": "^5.1.0"
   }
 }
